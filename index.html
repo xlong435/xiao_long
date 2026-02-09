@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的世界服务器 - 网易&国际互通版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            background-image: url(https://img1.baidu.com/it/u=2892291222,3806132293&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        /* LOGO样式 */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #64b564;
+            box-shadow: 0 0 20px rgba(100, 181, 100, 0.6);
+            object-fit: cover;
+        }
+        /* 滚动公告 */
+        .notice {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffdf50;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .notice-text {
+            white-space: nowrap;
+            animation: scroll 15s linear infinite;
+            font-size: 1.1rem;
+            color: #ffdf50;
+            font-weight: 500;
+        }
+        @keyframes scroll {
+            0% {transform: translateX(100%);}
+            100% {transform: translateX(-100%);}
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            border: 2px solid #64b564;
+        }
+        .header h1 {
+            font-size: 3rem;
+            color: #64b564;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px #64b564, 0 0 5px #000;
+        }
+        .header p {
+            font-size: 1.2rem;
+            color: #eee;
+            line-height: 1.5;
+        }
+        .server-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .card {
+            width: 400px;
+            background: rgba(15, 15, 15, 0.9);
+            border-radius: 12px;
+            border: 3px solid #444;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .card:hover {
+            border-color: #64b564;
+            transform: translateY(-8px);
+            box-shadow: 0 0 25px rgba(100, 181, 100, 0.6);
+        }
+        .card h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #64b564;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .card .desc {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        .qun-box {
+            background: #222;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 2px solid #555;
+        }
+        .qun-box p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #eee;
+        }
+        .qun-num {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #ffdf50;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px #ffdf50;
+        }
+        .copy-btn {
+            padding: 12px 35px;
+            background: #64b564;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto;
+        }
+        .copy-btn:hover {
+            background: #52a052;
+            box-shadow: 0 0 12px #64b564;
+            transform: scale(1.05);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            color: #aaa;
+            font-size: 1rem;
+        }
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 120px;
+                height: 120px;
+            }
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .card {
+                width: 100%;
+                padding: 25px 20px;
+            }
+            .qun-num {
+                font-size: 2.3rem;
+                letter-spacing: 2px;
+            }
+            .copy-btn {
+                padding: 10px 30px;
+            }
+        }
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .qun-num {
+                font-size: 2rem;
+            }
+            .notice-text {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 服务器LOGO -->
+        <div class="logo">
+            <!-- 替换LOGO链接：把src里的链接换成你的MC服务器LOGO图片链接（推荐正方形，/png格式） -->
+            <img src="https://proxy.gitwarp.top/https://github.com/xlong435/xiao_long/blob/main/%E5%B0%81%E9%9D%A2.png" alt="MC服务器LOGO" class="logo-img">
+        </div>
+
+        <!-- 滚动公告栏 -->
+        <div class="notice">
+            <div class="notice-text">
+                📢 服务器长期稳定运营 | 每日上线领福利 | 网易/国际版数据互通福利 | 群内有开服教程和专属模组包 📢
+            </div>
+        </div>
+
+        <!-- 头部标题 -->
+        <div class="header">
+            <h1><i class="fas fa-cube"></i> 我的世界专属服务器</h1>
+            <p>网易版 × 国际互通版 双服同步运营 | 纯享游玩体验 | 优质玩家社区</p>
+        </div>
+
+        <!-- 服务器卡片 -->
+        <div class="server-card">
+            <!-- 网易版服务器 -->
+            <div class="card">
+                <h2><i class="fas fa-globe-asia"></i> 网易版专属服</h2>
+                <p class="desc">适配网易MC全版本，无需正版验证，一键加入即可游玩！
+                纯净生存+趣味小游戏，萌新快速上手，老玩家带队开荒，社区氛围超友好，每日还有专属福利哦～</p>
+                <div class="qun-box">
+                    <p>网易服官方交流QQ群</p>
+                    <!-- 替换此处为【网易服真实群号】 -->
+                    <div class="qun-num" id="wy-qun">668352250</div>
+                    <button class="copy-btn" onclick="copyQun('wy-qun')"><i class="fas fa-copy"></i> 一键复制群号</button>
+                </div>
+            </div>
+
+            <!-- 国际互通版服务器 -->
+            <div class="card">
+                <h2><i class="fas fa-earth"></i> 国际互通版</h2>
+                <p class="desc">Java/基岩版全互通，支持正版/离线登录，适配多版本客户端！
+                丰富模组+自由探索+竞技玩法，高自由度打造专属世界，还有专属公益服活动，和全球玩家一起联机冒险～</p>
+                <div class="qun-box">
+                    <p>国际服官方交流QQ群</p>
+                    <!-- 替换此处为【国际服真实群号】 -->
+                    <div class="qun-num" id="gj-qun">1059442560</div>
+                    <button class="copy-btn" onclick="copyQun('gj-qun')"><i class="fas fa-copy"></i> 一键复制群号</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer">
+            <p>玩家自建专属MC社区 | 公平游玩 · 和谐交流 · 长期运营 | 最终解释权归服务器管理团队所有</p>
+        </div>
+    </div>
+
+    <script>
+        // 一键复制群号功能（含成功/失败提示）
+        function copyQun(id) {
+            const qunNum = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(qunNum).then(() => {
+                alert(`✅ 已成功复制群号：${qunNum}`);
+            }).catch(err => {
+                alert("❌ 复制失败，请手动复制群号！");
+                console.error(err);
+            });
+        }
+        // 页面淡入加载动画
+        window.onload = function() {
+            document.body.style.opacity = 0;
+            let op = 0;
+            const timer = setInterval(() => {
+                if (op >= 1) clearInterval(timer);
+                document.body.style.opacity = op;
+                op += 0.08;
+            }, 30);
+        }
+    </script>
+</body>
+</html>
